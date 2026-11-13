@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Authorization received</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+  <h1>Authorization received</h1>
+  <p>Copy this full address and paste it into the terminal where <code>npm run auth:tiktok</code> is waiting.</p>
+  <div class="box" id="url"></div>
+  <button id="copy" type="button">Copy</button>
+  <p class="muted">This page does not send the code anywhere: it only shows the address of this tab.</p>
+</main>
+<script>
+  // The authorization code lives in this tab's URL only; nothing is sent out.
+  const url = window.location.href;
+  document.getElementById('url').textContent = url;
+  document.getElementById('copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(url); document.getElementById('copy').textContent = 'Copied'; }
+    catch { document.getElementById('copy').textContent = 'Select the text above and copy it'; }
+  });
+</script>
+</body>
+</html>
